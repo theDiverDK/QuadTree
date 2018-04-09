@@ -1,15 +1,21 @@
-from graphics import Rectangle, GraphWin, Point
+from graphics import GraphWin
 
-from QuadTree import QuadTree
+import QuadTree
+import Point
+import Rectangle
 
 
 def main():
-    win = GraphWin('Face', 800, 600) # give title and dimensions
-
-    head = Rectangle(Point(100,100),Point(200,200))
-    head.draw(win)
+    test3 = Rectangle.Rectangle(20, 30, 40, 50)
+    test4 = QuadTree.QuadTree(test3, 10)
+  
+  
+    print(test3.Print())
+    print(test4.Print())
+    win = GraphWin('Face', 800, 600)  # give title and dimensions
 
     win.getMouse()
     win.close()
+
 
 main()

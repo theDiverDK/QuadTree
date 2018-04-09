@@ -1,8 +1,8 @@
 
 class QuadTree:
-    Capacity = 4
+    def __init__(self, boundary, capacity=4):
+        self.boundary = boundary
+        self.capacity = capacity
 
-    Quads = []
-
-    def __init__(self):
-        print ("Hello World")
+    def Print(self):
+        return "QuadTree("+self.boundary.Print() + ","+str(self.capacity)+")"
