@@ -1,13 +1,13 @@
 from graphics import GraphWin
 
-import QuadTree
-import Point
-import Rectangle
+from quadtree import QuadTree
+from point import Point
+from rectangle import Rectangle
 
 
 def main():
-    test3 = Rectangle.Rectangle(20, 30, 40, 50)
-    test4 = QuadTree.QuadTree(test3, 10)
+    test3 = Rectangle(20, 30, 40, 50)
+    test4 = QuadTree(test3, 10)
   
   
     print(test3.Print())
