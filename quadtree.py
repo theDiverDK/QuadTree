@@ -9,69 +9,51 @@ class QuadTree:
         self.capacity = capacity
         self.isDivided = False
         self.points = []
-        print(boundary.print(), capacity, self.isDivided)
 
     def print(self):
-        return "QuadTree("+self.boundary.print() + ","+str(self.capacity)+")"
+        return "QuadTree("+self.boundary.print()
 
     def insert(self, point):
-        print(point.x, point.y)
         if not self.boundary.contains(point):
             return False
 
         if len(self.points) < self.capacity:
             self.points.append(point)
-            print('Inserted:', point.x, point.y)
             return True
 
         if not self.isDivided:
             self.subDivide()
-            print('divided')
 
-        print(self.northwest.insert(point))
-        # if self.northwest.insert(point):
-        #     print('nw')
-        #     return True
-        # elif self.northeast.insert(point):
-        #     print('ne')
-        #     return True
-        # elif self.southwest.insert(point):
-        #     print('sw')
-        #     return True
-        # elif self.southeast.insert(point):
-        #     print('se')
-        #     return True
+        if self.northwest.insert(point):
+            return True
+        elif self.northeast.insert(point):
+            return True
+        elif self.southwest.insert(point):
+            return True
+        elif self.southeast.insert(point):
+            return True
 
     def subDivide(self):
-        x = self.boundary.x
-        y = self.boundary.y
-        w = self.boundary.w
-        h = self.boundary.h
+        x1, y1, x2, y2 = self.boundary.x1, self.boundary.y1, self.boundary.x2, self.boundary.y2
 
-        mx = int(x + w / 2)
-        my = int(y + h / 2)
+        mx = int((x1 + x2) / 2)
+        my = int((y1 + y2) / 2)
 
-        self.northwest = QuadTree(Rectangle(x, y, mx, my), self.capacity)
-        self.northeast = QuadTree(Rectangle(x+mx, y, x + w, my), self.capacity)
-        self.southwest = QuadTree(Rectangle(x, y+my, mx, y + h), self.capacity)
-        self.southeast = QuadTree(Rectangle(x+mx, y+my, x + w, y + h), self.capacity)
+        self.northwest = QuadTree(Rectangle(x1, y1, mx, my), self.capacity)
+        self.northeast = QuadTree(Rectangle(mx, y1, x2, my), self.capacity)
+        self.southwest = QuadTree(Rectangle(x1, my, mx, y2), self.capacity)
+        self.southeast = QuadTree(Rectangle(mx, my, mx, y2), self.capacity)
 
-        print('Divide', self.northwest.print(), self.northeast.print(),
-              self.southwest.print(), self.southeast.print())
         self.isDivided = True
 
     def show(self, win):
-        x = self.boundary.x
-        y = self.boundary.y
-        w = self.boundary.w
-        h = self.boundary.h
+        x1, y1, x2, y2 = self.boundary.x1, self.boundary.y1, self.boundary.x2, self.boundary.y2
 
         for point in self.points:
             p = gPoint(point.x, point.y)
             p.draw(win)
 
-        print(x, y, w, h, win)
-        rect = gRectangle(gPoint(x, y), gPoint(x + w, y + h))
+        rect = gRectangle(gPoint(x1, y1), gPoint(x2, y2))
         rect.draw(win)
 
         if self.isDivided:
