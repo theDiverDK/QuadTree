@@ -5,6 +5,8 @@ import random
 from quadtree import QuadTree
 from point import Point
 from rectangle import Rectangle
+from graphics import Rectangle as gRectangle, Point as gPoint
+
 
 def main():
     width = 800
@@ -22,11 +24,19 @@ def main():
 
     win = GraphWin('Quadtree', width, height)
 
+    qt.show(win)
+    mrect = None
     while True:
-        qt.show(win)
-        mouse=win.getMouse()
-        print(mouse.x,mouse.y)
-        qt.insert(Point(mouse.x, mouse.y))
+        mouse = win.checkMouse()
+        print(mouse)
+        if not mouse is None:
+
+            if not mrect is None:
+                mrect.undraw(win)
+                print("undraw")
+            if mouse.x >= border and mouse.x <= width-border and mouse.y >= border and mouse.y <= width-border:
+                mrect = gRectangle(gPoint(mouse.x-border, mouse.y-border), gPoint(mouse.x+border, mouse.y+border))
+                mrect.draw(win)
 
     win.close()
 
