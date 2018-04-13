@@ -42,7 +42,7 @@ class QuadTree:
         self.northwest = QuadTree(Rectangle(x1, y1, mx, my), self.capacity)
         self.northeast = QuadTree(Rectangle(mx, y1, x2, my), self.capacity)
         self.southwest = QuadTree(Rectangle(x1, my, mx, y2), self.capacity)
-        self.southeast = QuadTree(Rectangle(mx, my, mx, y2), self.capacity)
+        self.southeast = QuadTree(Rectangle(mx, my, x2, y2), self.capacity)
 
         self.isDivided = True
 
