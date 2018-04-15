@@ -25,15 +25,17 @@ def main():
     mrect = None
     while True:
         mouse = win.checkMouse()
-        
+
         if not mouse is None:
 
             # if not mrect is None:
             #     mrect.undraw(win)
             #     print("undraw")
             if mouse.x >= border and mouse.x <= width-border and mouse.y >= border and mouse.y <= width-border:
+
                 mrect = gRectangle(gPoint(mouse.x-border, mouse.y-border), gPoint(mouse.x+border, mouse.y+border))
                 mrect.draw(win)
+                hits = qt.query(Rectangle(mrect.p1.getX, mrect.p1.getY, mrect.p2.getX, mrect.p2.getY))
 
     win.close()
 

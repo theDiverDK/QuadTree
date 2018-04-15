@@ -61,3 +61,6 @@ class QuadTree:
             self.northeast.show(win)
             self.southwest.show(win)
             self.southeast.show(win)
+
+    def query(self, boundary):
+        pass
