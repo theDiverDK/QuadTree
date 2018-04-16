@@ -15,7 +15,7 @@ def main():
     rect = Rectangle(x1, y1, x2, y2)
     qt = QuadTree(rect, 4)
 
-    for _ in range(500):
+    for _ in range(5000):
         qt.insert(Point(random.randrange(x1, x2),
                         random.randrange(y1, y2)))
 
@@ -29,7 +29,7 @@ def main():
         mouse = win.checkMouse()
 
         if not mouse is None:
-¨            if mouse.x >= border and mouse.x <= width-border and mouse.y >= border and mouse.y <= width-border:
+            if mouse.x >= border and mouse.x <= width-border and mouse.y >= border and mouse.y <= width-border:
                 for item in win.items[:]:
                     item.undraw()
 
@@ -42,11 +42,8 @@ def main():
 
                 hits = qt.query(boundary)
 
-                print([str(i) for i in hits])
-
                 for hit in hits:
                     qt.remove(hit)
-                    print('data ', qt.getLoadAndCapacity())
 
                 qt.show(win)
                 win.update()
