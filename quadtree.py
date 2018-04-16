@@ -2,7 +2,6 @@ from rectangle import Rectangle
 from graphics import Rectangle as gRectangle
 from graphics import Point as gPoint
 
-
 class QuadTree:
     def __init__(self, boundary, capacity=4):
         self.boundary = boundary
