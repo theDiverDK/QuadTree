@@ -42,6 +42,7 @@ def main():
 
                 hits = qt.query(boundary)
 
+                #ToDo: optimize to send list instead, because the points are close
                 for hit in hits:
                     qt.remove(hit)
 

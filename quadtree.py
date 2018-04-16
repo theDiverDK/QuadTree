@@ -123,11 +123,11 @@ class QuadTree:
                 print('southeast')
                 self.southeast.remove(point)
 
-            # if len(self.northwest.points) == 0 and len(self.northeast.points) == 0 and len(self.southwest.points) == 0 and len(self.southeast.points) == 0:
-            #     self.northwest = None
-            #     self.northeast = None
-            #     self.southwest = None
-            #     self.southeast = None
-            #     self.isDivided = False
+            if len(self.northwest.points) == 0 and len(self.northeast.points) == 0 and len(self.southwest.points) == 0 and len(self.southeast.points) == 0:
+                self.northwest = None
+                self.northeast = None
+                self.southwest = None
+                self.southeast = None
+                self.isDivided = False
 
         return
