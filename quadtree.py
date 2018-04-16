@@ -69,10 +69,10 @@ class QuadTree:
     def query(self, boundary):
         result = []
 
-        if(not self.boundary.doOverlap(boundary)):
+        if not self.boundary.doOverlap(boundary):
             return result
 
-        if(self.isDivided):
+        if self.isDivided:
             result.extend(self.northwest.query(boundary))
             result.extend(self.northeast.query(boundary))
             result.extend(self.southwest.query(boundary))
@@ -85,4 +85,22 @@ class QuadTree:
         return result
 
     def getLoadAndCapacity(self):
-        pass
+        load = 0
+        totalCapacity = 0
+        load += len(self.points)
+        totalCapacity += self.capacity
+
+        if self.isDivided:
+            tempLoad, tempTotalCapacity = self.northwest.getLoadAndCapacity()
+            load += tempLoad
+            totalCapacity += tempTotalCapacity
+            tempLoad, tempTotalCapacity = self.northeast.getLoadAndCapacity()
+            load += tempLoad
+            totalCapacity += tempTotalCapacity
+            tempLoad, tempTotalCapacity = self.southwest.getLoadAndCapacity()
+            load += tempLoad
+            totalCapacity += tempTotalCapacity
+            tempLoad, tempTotalCapacity = self.southeast.getLoadAndCapacity()
+            load += tempLoad
+            totalCapacity += tempTotalCapacity
+        return load, totalCapacity

@@ -4,6 +4,7 @@ from point import Point
 from rectangle import Rectangle
 from graphics import Rectangle as gRectangle, Point as gPoint, GraphWin
 
+
 def main():
     width = 800
     height = 600
@@ -11,12 +12,14 @@ def main():
 
     x1, y1, x2, y2 = border, border, width-border, height-border
 
-    rect = Rectangle(100, 100, x2, y2)
+    rect = Rectangle(x1, y1, x2, y2)
     qt = QuadTree(rect, 4)
 
-    for _ in range(200):
+    for _ in range(21):
         qt.insert(Point(random.randrange(x1, x2),
                         random.randrange(y1, y2)))
+
+    print('data ', qt.getLoadAndCapacity())
 
     win = GraphWin('Quadtree', width, height)
     print(qt)
@@ -36,12 +39,14 @@ def main():
                     gPoint(mouse.x-border, mouse.y-border), gPoint(mouse.x+border, mouse.y+border))
                 mrect.draw(win)
 
-                boundary = Rectangle(mrect.p1.getX(), mrect.p1.getY(), mrect.p2.getX(), mrect.p2.getY())
+                boundary = Rectangle(
+                    mrect.p1.getX(), mrect.p1.getY(), mrect.p2.getX(), mrect.p2.getY())
 
                 hits = qt.query(boundary)
 
                 print([str(i) for i in hits])
 
     win.close()
+
 
 main()
