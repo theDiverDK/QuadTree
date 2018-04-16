@@ -9,9 +9,13 @@ class QuadTree:
         self.capacity = capacity
         self.isDivided = False
         self.points = []
+        self.northwest = None
+        self.northeast = None
+        self.southwest = None
+        self.southeast = None
 
-    def print(self):
-        return "QuadTree("+self.boundary.print()
+    def __str__( self ):
+        return "QuadTree("+ self.boundary.__str__()
 
     def insert(self, point):
         if not self.boundary.contains(point):
@@ -63,4 +67,25 @@ class QuadTree:
             self.southeast.show(win)
 
     def query(self, boundary):
-        pass
+        result = []
+
+        if(not self.boundary.doOverlap(boundary)):
+            return result
+
+        if(not self.northwest is None):
+            result.extend(self.northwest.query(boundary))
+
+        if(not self.northeast is None):
+            result.extend(self.northeast.query(boundary))
+
+        if(not self.southwest is None):
+            result.extend(self.southwest.query(boundary))
+
+        if(not self.southeast is None):
+            result.extend(self.southeast.query(boundary))
+
+        for i in self.points:
+            if i.isInside(boundary):
+                result.append(i)
+
+        return result

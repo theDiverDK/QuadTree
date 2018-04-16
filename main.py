@@ -4,7 +4,6 @@ from point import Point
 from rectangle import Rectangle
 from graphics import Rectangle as gRectangle, Point as gPoint, GraphWin
 
-
 def main():
     width = 800
     height = 600
@@ -12,15 +11,15 @@ def main():
 
     x1, y1, x2, y2 = border, border, width-border, height-border
 
-    rect = Rectangle(x1, y1, x2, y2)
+    rect = Rectangle(100, 100, x2, y2)
     qt = QuadTree(rect, 4)
 
-    for _ in range(1000):
+    for _ in range(200):
         qt.insert(Point(random.randrange(x1, x2),
                         random.randrange(y1, y2)))
 
     win = GraphWin('Quadtree', width, height)
-
+    print(qt)
     qt.show(win)
     mrect = None
     while True:
@@ -30,14 +29,20 @@ def main():
 
             # if not mrect is None:
             #     mrect.undraw(win)
-            #     print("undraw")
+            #     toString("undraw")
             if mouse.x >= border and mouse.x <= width-border and mouse.y >= border and mouse.y <= width-border:
 
-                mrect = gRectangle(gPoint(mouse.x-border, mouse.y-border), gPoint(mouse.x+border, mouse.y+border))
+                mrect = gRectangle(
+                    gPoint(mouse.x-border, mouse.y-border), gPoint(mouse.x+border, mouse.y+border))
                 mrect.draw(win)
-                hits = qt.query(Rectangle(mrect.p1.getX, mrect.p1.getY, mrect.p2.getX, mrect.p2.getY))
+
+                boundary = Rectangle(mrect.p1.getX(), mrect.p1.getY(), mrect.p2.getX(), mrect.p2.getY())
+
+                hits = qt.query(boundary)
+                print(hits)
+
+                print([str(i) for i in hits])
 
     win.close()
-
 
 main()

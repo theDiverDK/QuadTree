@@ -3,5 +3,8 @@ class Point:
         self.x = x
         self.y = y
 
-    def print(self):
+    def __str__( self ):
         return "Point("+str(self.x) + ","+str(self.y)+")"
+
+    def isInside(self, boundary):
+        return self.x >= boundary.x1 and self.x <= boundary.x2 and self.y >= boundary.y1 and self.y <= boundary.y2
