@@ -103,4 +103,24 @@ class QuadTree:
             tempLoad, tempTotalCapacity = self.southeast.getLoadAndCapacity()
             load += tempLoad
             totalCapacity += tempTotalCapacity
+
         return load, totalCapacity
+
+    def remove(self, point):
+        if point in self.points:
+            self.points.remove(point)
+        elif self.isDivided:
+            print('isDivided')
+            self.northwest.remove(point)
+            self.northeast.remove(point)
+            self.southwest.remove(point)
+            self.southeast.remove(point)
+
+            if len(self.northwest.points) == 0 and len(self.northeast.points) == 0 and len(self.southwest.points) == 0 and len(self.southeast.points) == 0:
+                self.northwest = None
+                self.northeast = None
+                self.southwest = None
+                self.southeast = None
+                self.isDivided = False
+
+        return
