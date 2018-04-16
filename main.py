@@ -39,7 +39,6 @@ def main():
                 boundary = Rectangle(mrect.p1.getX(), mrect.p1.getY(), mrect.p2.getX(), mrect.p2.getY())
 
                 hits = qt.query(boundary)
-                print(hits)
 
                 print([str(i) for i in hits])
 

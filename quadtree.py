@@ -2,6 +2,7 @@ from rectangle import Rectangle
 from graphics import Rectangle as gRectangle
 from graphics import Point as gPoint
 
+
 class QuadTree:
     def __init__(self, boundary, capacity=4):
         self.boundary = boundary
@@ -13,8 +14,8 @@ class QuadTree:
         self.southwest = None
         self.southeast = None
 
-    def __str__( self ):
-        return "QuadTree("+ self.boundary.__str__()
+    def __str__(self):
+        return "QuadTree(" + self.boundary.__str__()
 
     def insert(self, point):
         if not self.boundary.contains(point):
@@ -71,16 +72,10 @@ class QuadTree:
         if(not self.boundary.doOverlap(boundary)):
             return result
 
-        if(not self.northwest is None):
+        if(self.isDivided):
             result.extend(self.northwest.query(boundary))
-
-        if(not self.northeast is None):
             result.extend(self.northeast.query(boundary))
-
-        if(not self.southwest is None):
             result.extend(self.southwest.query(boundary))
-
-        if(not self.southeast is None):
             result.extend(self.southeast.query(boundary))
 
         for i in self.points:
@@ -88,3 +83,6 @@ class QuadTree:
                 result.append(i)
 
         return result
+
+    def getLoadAndCapacity(self):
+        pass
