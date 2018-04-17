@@ -111,16 +111,12 @@ class QuadTree:
             self.points.remove(point)
         elif self.isDivided:
             if point.isInside(self.northwest.boundary):
-                print('northwest')
                 self.northwest.remove(point)
             if point.isInside(self.northeast.boundary):
-                print('northeast')
                 self.northeast.remove(point)
             if point.isInside(self.southwest.boundary):
-                print('southwest')
                 self.southwest.remove(point)
             if point.isInside(self.southeast.boundary):
-                print('southeast')
                 self.southeast.remove(point)
 
             if len(self.northwest.points) == 0 and len(self.northeast.points) == 0 and len(self.southwest.points) == 0 and len(self.southeast.points) == 0:

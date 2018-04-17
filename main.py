@@ -45,7 +45,6 @@ def main():
                 #ToDo: optimize to send list instead, because the points are close
                 for hit in hits:
                     qt.remove(hit)
-
                 qt.show(win)
                 win.update()
 
