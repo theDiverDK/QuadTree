@@ -125,5 +125,3 @@ class QuadTree:
                 self.southwest = None
                 self.southeast = None
                 self.isDivided = False
-
-        return
