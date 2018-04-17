@@ -1,4 +1,4 @@
-from point import Point
+from app.point import Point
 
 class Rectangle:
     def __init__(self, x1, y1, x2, y2):

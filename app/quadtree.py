@@ -1,6 +1,6 @@
-from rectangle import Rectangle
-from graphics import Rectangle as gRectangle
-from graphics import Point as gPoint
+from app.rectangle import Rectangle
+from app.graphics import Rectangle as gRectangle
+from app.graphics import Point as gPoint
 
 
 class QuadTree:
@@ -40,8 +40,8 @@ class QuadTree:
     def subDivide(self):
         x1, y1, x2, y2 = self.boundary.x1, self.boundary.y1, self.boundary.x2, self.boundary.y2
 
-        mx = int((x1 + x2) / 2)
-        my = int((y1 + y2) / 2)
+        mx = (x1 + x2) / 2
+        my = (y1 + y2) / 2
 
         self.northwest = QuadTree(Rectangle(x1, y1, mx, my), self.capacity)
         self.northeast = QuadTree(Rectangle(mx, y1, x2, my), self.capacity)
