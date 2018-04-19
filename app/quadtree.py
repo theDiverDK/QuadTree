@@ -94,12 +94,15 @@ class QuadTree:
             tempLoad, tempTotalCapacity = self.northwest.getLoadAndCapacity()
             load += tempLoad
             totalCapacity += tempTotalCapacity
+
             tempLoad, tempTotalCapacity = self.northeast.getLoadAndCapacity()
             load += tempLoad
             totalCapacity += tempTotalCapacity
+
             tempLoad, tempTotalCapacity = self.southwest.getLoadAndCapacity()
             load += tempLoad
             totalCapacity += tempTotalCapacity
+
             tempLoad, tempTotalCapacity = self.southeast.getLoadAndCapacity()
             load += tempLoad
             totalCapacity += tempTotalCapacity
@@ -112,10 +115,13 @@ class QuadTree:
         elif self.isDivided:
             if point.isInside(self.northwest.boundary):
                 self.northwest.remove(point)
+
             if point.isInside(self.northeast.boundary):
                 self.northeast.remove(point)
+
             if point.isInside(self.southwest.boundary):
                 self.southwest.remove(point)
+
             if point.isInside(self.southeast.boundary):
                 self.southeast.remove(point)
 
