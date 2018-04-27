@@ -1,6 +1,6 @@
 from app.rectangle import Rectangle
-from app.graphics import Rectangle as gRectangle
-from app.graphics import Point as gPoint
+from gfx.graphics import Rectangle as gRectangle
+from gfx.graphics import Point as gPoint
 
 
 class QuadTree:

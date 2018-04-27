@@ -2,7 +2,7 @@ import random
 from app.quadtree import QuadTree
 from app.point import Point
 from app.rectangle import Rectangle
-from app.graphics import Rectangle as gRectangle, Point as gPoint, GraphWin
+from gfx.graphics import Rectangle as gRectangle, Point as gPoint, GraphWin
 
 
 def demo():
