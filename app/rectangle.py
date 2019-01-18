@@ -19,4 +19,5 @@ class Rectangle:
             return False
         if self.y1 > boundary.y2 or self.y2 < boundary.y1:
             return False
+            
         return True

@@ -15,7 +15,7 @@ def demo():
     rect = Rectangle(x1, y1, x2, y2)
     qt = QuadTree(rect, 4)
 
-    for _ in range(500):
+    for _ in range(1000):
         qt.insert(Point(random.randrange(x1, x2),
                         random.randrange(y1, y2)))
 
@@ -33,18 +33,17 @@ def demo():
                 for item in win.items[:]:
                     item.undraw()
 
-                mrect = gRectangle(
-                    gPoint(mouse.x - border, mouse.y - border), gPoint(mouse.x + border, mouse.y + border))
+                mrect = gRectangle(gPoint(mouse.x - border, mouse.y - border), gPoint(mouse.x + border, mouse.y + border))
                 mrect.draw(win)
 
-                boundary = Rectangle(
-                    mrect.p1.getX(), mrect.p1.getY(), mrect.p2.getX(), mrect.p2.getY())
+                boundary = Rectangle(mrect.p1.getX(), mrect.p1.getY(), mrect.p2.getX(), mrect.p2.getY())
 
                 hits = qt.query(boundary)
 
                 # ToDo: optimize to send list instead, because the points are close
                 for hit in hits:
                     qt.remove(hit)
+
                 qt.show(win)
                 win.update()
 
