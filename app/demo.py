@@ -25,6 +25,7 @@ def demo():
     print(qt)
     qt.show(win)
     mrect = None
+
     while True:
         mouse = win.checkMouse()
 

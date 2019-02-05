@@ -17,7 +17,8 @@ class Rectangle:
     def doOverlap(self, boundary):
         if self.x1 > boundary.x2 or self.x2 < boundary.x1:
             return False
+
         if self.y1 > boundary.y2 or self.y2 < boundary.y1:
             return False
-            
+
         return True
